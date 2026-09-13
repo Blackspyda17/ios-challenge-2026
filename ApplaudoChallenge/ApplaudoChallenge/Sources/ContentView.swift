@@ -20,6 +20,12 @@ public struct ContentView: View {
                 .tabItem {
                     Label("Add Cat", systemImage: "plus.circle")
                 }
+
+            // MARK: - Tab 3: My Cats
+            MyCatsListView(store: store)
+                .tabItem {
+                    Label("My Cats", systemImage: "pawprint.fill")
+                }
         }
         .tint(AppTheme.Colors.primary)
     }
