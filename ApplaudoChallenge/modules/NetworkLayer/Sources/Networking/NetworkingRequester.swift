@@ -35,7 +35,7 @@ public enum NetworkError: Error, LocalizedError {
 // MARK: - Networking Requester Type
 /// Core networking abstraction. Any type conforming to this protocol can execute API requests.
 /// Implement `execute` to drive the full request lifecycle using the provided `NetworkingTargetType`.
-protocol NetworkingRequesterType {
+public protocol NetworkingRequesterType {
     /// Executes a network request and returns a raw-data publisher.
     /// - Parameter request: The endpoint descriptor conforming to `NetworkingTargetType`.
     func execute(request: NetworkingTargetType) -> AnyPublisher<Data, NetworkError>
@@ -43,18 +43,18 @@ protocol NetworkingRequesterType {
 
 // MARK: - Networking Requester
 /// Concrete implementation of `NetworkingRequesterType` backed by a Moya `MoyaProvider<MultiTarget>`.
-struct NetworkingRequester: NetworkingRequesterType {
+public struct NetworkingRequester: NetworkingRequesterType {
     // MARK: - Properties
     private let provider: MoyaProvider<MultiTarget>
 
     // MARK: - Initializer
-    init(
+    public init(
         provider: MoyaProvider<MultiTarget>
     ) {
         self.provider = provider
     }
 
-    func execute(request: NetworkingTargetType) -> AnyPublisher<Data, NetworkError> {
+    public func execute(request: NetworkingTargetType) -> AnyPublisher<Data, NetworkError> {
         var task: Moya.Cancellable?
         let provider = provider // Captured locally to avoid reference issues inside the closure.
 

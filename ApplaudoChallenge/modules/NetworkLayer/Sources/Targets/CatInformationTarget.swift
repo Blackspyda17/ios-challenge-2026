@@ -15,6 +15,8 @@ import Moya
 enum CatInformationTarget {
     /// Fetches a random cat image from the API.
     case getCatImage
+    /// Paged breed catalog. The API honors limit/page as query params.
+    case listBreeds(limit: Int, page: Int)
 }
 
 // MARK: - NetworkingTargetType Conformance
@@ -24,6 +26,8 @@ extension CatInformationTarget: NetworkingTargetType {
         switch self {
         case .getCatImage:
             return "images/search" // Full URL: https://api.thecatapi.com/v1/images/search
+        case .listBreeds:
+            return "breeds"
         }
     }
 
@@ -31,6 +35,8 @@ extension CatInformationTarget: NetworkingTargetType {
     var requestMethod: RequestMethod {
         switch self {
         case .getCatImage:
+            return .get
+        case .listBreeds:
             return .get
         }
     }
@@ -40,6 +46,11 @@ extension CatInformationTarget: NetworkingTargetType {
         switch self {
         case .getCatImage:
             return .requestPlain
+        case .listBreeds(let limit, let page):
+            return .requestParameters(
+                parameters: ["limit": limit, "page": page],
+                encoding: URLEncoding.queryString
+            )
         }
     }
 }
