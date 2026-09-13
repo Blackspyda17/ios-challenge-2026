@@ -1,6 +1,3 @@
-import Testing
-@testable import ApplaudoChallenge
-
 import Foundation
 import Testing
 @testable import ApplaudoChallenge

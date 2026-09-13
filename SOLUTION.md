@@ -6,8 +6,8 @@
    `modules/NetworkLayer/Sources/Networking/Configuration/NetworkingTargetType.swift`
    where it says `"x-api-key": "YOUR-API-KEY"`. Without the key the app still
    opens but the list shows its error state with retry (I tested this).
-2. `tuist install && tuist generate` (with tuist 4.200.x the command is
-   `install`; the README says `fetch`, which was for older versions).
+2. `tuist fetch && tuist generate` (with tuist 4.148.1 as pinned in
+   `ApplaudoChallenge/mise.toml`).
 3. Open `ApplaudoChallenge.xcworkspace` in Xcode 26+ and run on simulator.
 
 ## Architecture

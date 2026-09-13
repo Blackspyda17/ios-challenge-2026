@@ -79,6 +79,6 @@ public struct Breed: Decodable, Identifiable, Equatable {
     }
 
     public var shortDescription: String {
-        description ?? "Sin descripción disponible."
+        description ?? "No description available."
     }
 }

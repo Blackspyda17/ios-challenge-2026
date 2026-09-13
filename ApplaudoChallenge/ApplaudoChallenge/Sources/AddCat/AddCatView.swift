@@ -34,7 +34,7 @@ struct AddCatView: View {
                     .padding(.bottom, AppTheme.Spacing.sm)
             }
             .navigationTitle("Add Cat")
-            .alert("Cat saved 🎉", isPresented: savedBinding) {
+            .alert("Cat saved", isPresented: savedBinding) {
                 Button("Add another") { vm.reset() }
                 Button("Done", role: .cancel) { vm.reset() }
             } message: {
