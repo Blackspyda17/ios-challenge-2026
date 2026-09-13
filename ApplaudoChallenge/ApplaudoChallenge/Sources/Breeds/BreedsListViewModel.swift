@@ -76,11 +76,12 @@ final class BreedsListViewModel: ObservableObject {
             .sink { [weak self] done in
                 guard let self else { return }
                 if case .failure(let err) = done {
+                    let message = self.userFriendlyMessage(for: err)
                     if isFirst {
-                        self.state = .failed(err.localizedDescription)
+                        self.state = .failed(message)
                     } else {
                         self.isLoadingPage = false
-                        self.pageError = err.localizedDescription
+                        self.pageError = message
                     }
                 }
             } receiveValue: { [weak self] batch in
@@ -96,5 +97,12 @@ final class BreedsListViewModel: ObservableObject {
                 }
             }
             .store(in: &bag)
+    }
+
+    private func userFriendlyMessage(for error: NetworkError) -> String {
+        if case .serverError(let code, _) = error, code == 401 {
+            return "Invalid API key. Please check your configuration in NetworkingTargetType.swift."
+        }
+        return error.localizedDescription
     }
 }

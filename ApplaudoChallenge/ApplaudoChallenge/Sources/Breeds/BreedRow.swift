@@ -28,10 +28,6 @@ struct BreedRow: View {
             }
 
             Spacer()
-
-            Image(systemName: "chevron.right")
-                .font(.caption)
-                .foregroundColor(AppTheme.Colors.textSecondary)
         }
         .padding(.vertical, AppTheme.Spacing.sm)
     }
